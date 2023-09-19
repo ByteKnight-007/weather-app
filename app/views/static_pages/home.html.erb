@@ -1,0 +1,38 @@
+<!-- app/views/static_pages/home.html.erb -->
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Welcome to WeatherApp</title>
+  <style>
+    /* Define the background image and styles */
+    body {
+      background-image: image-url('/assets/images/fd054edc.jpg'); /* Replace with the actual path to your background image */
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      background-position: center center;
+      color: #4a727d; /* Text color */
+      text-align: center;
+      font-size: 24px;
+      padding: 100px; /* Adjust as needed */
+    }
+
+    .buttons {
+      margin-top: 20px;
+    }
+
+    .btn {
+      margin: 5px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Welcome to WeatherApp</h1>
+  <div class="buttons">
+    <%= link_to "Sign Up", signup_path, class: "btn btn-primary" %>
+    <%= link_to "Sign In", signin_path, class: "btn btn-secondary" %>
+  </div>
+</body>
+</html>
+
+
