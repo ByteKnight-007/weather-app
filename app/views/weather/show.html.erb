@@ -115,8 +115,8 @@
         <!-- Time Information -->
         <div class="weather-group">
           <h3>Time</h3>
-          <p>Sunrise: <%= @sunrise_time.strftime('%H:%M:%S') %></p>
-          <p>Sunset: <%= @sunset_time.strftime('%H:%M:%S') %></p>
+            <p>Sunrise: <%= @sunrise_time %></p>
+            <p>Sunset: <%= @sunset_time %></p>
         </div>
         
         <!-- Wind Information -->
@@ -130,8 +130,8 @@
           <h3>Miscellaneous</h3>
           <p>Description: <%= @description %></p>
           <p>Humidity: <%= @humidity %> %</p>
-          <p>Pressure: <%= @pressure %> hPa</p>
-          <p>Visibility: <%= @visibility %> meters</p>
+          <p>Pressure: <%= @pressure %> atm</p>
+          <p>Visibility: <%= @visibility %> km</p>
           <p>Clouds: <%= @clouds %> %</p>
         </div>
       </div>
