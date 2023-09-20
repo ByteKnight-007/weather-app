@@ -5,9 +5,11 @@ class SessionsController < ApplicationController
   def create
     user = User.find_by(email: params[:session][:email].downcase)
     puts user
+    puts session
     if user && user.authenticate(params[:session][:password])
       # Successfully signed in
       session[:user_id] = user.id
+      session[:first_name] = user.first_name
       redirect_to weather_path, notice: 'Successfully signed in!'
     else
       # Invalid email or password

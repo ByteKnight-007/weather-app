@@ -34,6 +34,7 @@
 
       /* Style the weather information section */
       .weather-info {
+        text-align: center; /* Center align weather information */
         margin-top: 20px;
       }
 
@@ -43,6 +44,7 @@
         padding: 10px;
         border-radius: 5px;
         margin-bottom: 10px;
+        text-align: left; /* Left align weather group content */
       }
 
       /* Style headings within weather groups */
@@ -84,11 +86,32 @@
         background-color: #0056b3;
       }
 
+      /* Style the greeting in the top left corner */
+      .greeting {
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        font-size: 18px;
+        color: #333;
+      }
+
   </style>
 </head>
 <body>
   <div class="container">
     <h1>Weather Information</h1>
+    
+    <!-- Greeting in top left corner -->
+    <div class="greeting">
+      <% current_time = Time.now %>
+      <% if current_time.hour < 12 %>
+        Good Morning, <%= session[:first_name] %> !
+      <% elsif current_time.hour < 18 %>
+        Good Afternoon, <%= session[:first_name] %> !
+      <% else %>
+        Good Evening, <%= session[:first_name] %> !
+      <% end %>
+    </div>
     
     <!-- City Input Form -->
     <%= form_tag(weather_path, method: :get) do %>
@@ -103,7 +126,6 @@
       <div class="weather-info">
         <h2>Current Weather in <%= @city %>:</h2>
         
-        <!-- Temperature Information -->
         <div class="weather-group">
           <h3>Temperature</h3>
           <p>Temperature: <%= @temperature %> &deg;C</p>
@@ -112,20 +134,17 @@
           <p>Temp Max: <%= @temp_max %> &deg;C</p>
         </div>
         
-        <!-- Time Information -->
         <div class="weather-group">
           <h3>Time</h3>
             <p>Sunrise: <%= @sunrise_time %></p>
             <p>Sunset: <%= @sunset_time %></p>
         </div>
         
-        <!-- Wind Information -->
         <div class="weather-group">
           <h3>Wind</h3>
           <p>Wind Speed: <%= @wind_speed %> m/s</p>
         </div>
         
-        <!-- Miscellaneous Information -->
         <div class="weather-group">
           <h3>Miscellaneous</h3>
           <p>Description: <%= @description %></p>
