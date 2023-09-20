@@ -8,7 +8,7 @@ class SessionsController < ApplicationController
     if user && user.authenticate(params[:session][:password])
       # Successfully signed in
       session[:user_id] = user.id
-      redirect_to weather_index_path, notice: 'Successfully signed in!'
+      redirect_to weather_path, notice: 'Successfully signed in!'
     else
       # Invalid email or password
       flash.now[:alert] = 'Invalid email or password'

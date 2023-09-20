@@ -1,17 +1,106 @@
-<h2>Sign in</h2>
-<%= form_with(url: signin_path, local: true) do |form| %>
-  <% if flash[:alert] %>
-    <div class="alert alert-danger"><%= flash[:alert] %></div>
-  <% end %>
-  <div class="form-group">
-    <%= label_tag 'Email' %>
-    <%= email_field_tag 'session[email]', nil, class: 'form-control', required: true %>
-  </div>
-  <div class="form-group">
-    <%= label_tag 'Password' %>
-    <%= password_field_tag 'session[password]', nil, class: 'form-control', required: true %>
-  </div>
-  <%= submit_tag 'Sign in', class: 'btn btn-primary' %>
-<% end %>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign In</title>
+    <style>
+      body {
+        background-image: url('https://wallpapers.com/images/hd/cloudy-weather-digital-illustration-hi16vkc00cp99uzv.jpg');
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-position: center center;
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+      }
+
+      /* Add this CSS within your <style> section or link an external stylesheet */
+
+      /* Form container */
+      .container {
+          background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent white background */
+          border-radius: 8px;
+          padding: 20px;
+          box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+          width: 300px; /* Adjust the width as needed */
+          margin: 0 auto;
+          text-align: center;
+      }
+
+      /* Form heading */
+      h2 {
+          font-size: 24px;
+          margin-bottom: 20px;
+      }
+
+      /* Form inputs */
+      .form-group {
+          margin-bottom: 15px;
+      }
+
+      .form-control {
+          width: 100%;
+          padding: 10px;
+          border: 1px solid #ccc;
+          border-radius: 4px;
+          font-size: 16px;
+      }
+
+      /* Submit button */
+      .btn-primary {
+          background-color: #007BFF; /* Blue color */
+          color: #fff;
+          padding: 10px 20px;
+          border: none;
+          border-radius: 4px;
+          font-size: 18px;
+          cursor: pointer;
+          transition: background-color 0.3s;
+      }
+
+      .btn-primary:hover {
+          background-color: #0056b3; /* Darker blue on hover */
+      }
+
+      /* Alert message */
+      .alert-danger {
+          color: #721c24; /* Red color for error messages */
+          background-color: #f8d7da; /* Light red background */
+          border: 1px solid #f5c6cb;
+          padding: 10px;
+          border-radius: 4px;
+          margin-bottom: 20px;
+          font-weight: bold;
+      }
+    </style>
+</head>
+<body>
+    <main>
+        <div class="container">
+            <h2>Sign in</h2>
+            <%= form_with(url: signin_path, local: true) do |form| %>
+                <% if flash[:alert] %>
+                    <div class="alert alert-danger"><%= flash[:alert] %></div>
+                <% end %>
+                <div class="form-group">
+                    <%= label_tag 'Email' %>
+                    <%= email_field_tag 'session[email]', nil, class: 'form-control', required: true %>
+                </div>
+                <div class="form-group">
+                    <%= label_tag 'Password' %>
+                    <%= password_field_tag 'session[password]', nil, class: 'form-control', required: true %>
+                </div>
+                <%= submit_tag 'Sign in', class: 'btn btn-primary' %>
+            <% end %>
+        </div>
+    </main>
+</body>
+</html>
 
 

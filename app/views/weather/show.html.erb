@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Weather Information</title>
+  <style>
+      /* Reset some default browser styles */
+      body, h1, h2, h3, p {
+        margin: 0;
+        padding: 0;
+      }
+
+      /* Apply a background color and font family to the entire body */
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f0f0f0;
+      }
+
+      /* Center the container horizontally and apply some styles */
+      .container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+      }
+
+      /* Style the page heading */
+      h1 {
+        color: #333;
+        font-size: 24px;
+        margin-bottom: 20px;
+      }
+
+      /* Style the weather information section */
+      .weather-info {
+        margin-top: 20px;
+      }
+
+      /* Style each group of weather information */
+      .weather-group {
+        background-color: #f9f9f9;
+        padding: 10px;
+        border-radius: 5px;
+        margin-bottom: 10px;
+      }
+
+      /* Style headings within weather groups */
+      .weather-group h3 {
+        color: #555;
+        font-size: 18px;
+        margin-bottom: 5px;
+      }
+
+      /* Style paragraphs within weather groups */
+      .weather-group p {
+        color: #777;
+        margin: 5px 0;
+      }
+
+      /* Style the alert message */
+      .alert {
+        background-color: #f44336;
+        color: #fff;
+        padding: 10px;
+        border-radius: 5px;
+        margin-top: 20px;
+      }
+
+      /* Style the "Get Weather" button */
+      .btn {
+        display: inline-block;
+        padding: 10px 20px;
+        background-color: #007bff;
+        color: #fff;
+        text-decoration: none;
+        border-radius: 5px;
+        margin-top: 20px;
+        transition: background-color 0.3s ease-in-out;
+      }
+
+      /* Change button color on hover */
+      .btn:hover {
+        background-color: #0056b3;
+      }
+
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Weather Information</h1>
+    
+    <!-- City Input Form -->
+    <%= form_tag(weather_path, method: :get) do %>
+      <div class="field">
+        <%= label_tag :city, 'Enter City Name:' %>
+        <%= text_field_tag :city, nil, placeholder: 'e.g., New York', required: true %>
+      </div>
+      <%= submit_tag 'Get Weather', class: 'btn' %>
+    <% end %>
+
+    <% if @weather_data %>
+      <div class="weather-info">
+        <h2>Current Weather in <%= @city %>:</h2>
+        
+        <!-- Temperature Information -->
+        <div class="weather-group">
+          <h3>Temperature</h3>
+          <p>Temperature: <%= @temperature %> &deg;C</p>
+          <p>Feels Like: <%= @feels_like %> &deg;C</p>
+          <p>Temp Min: <%= @temp_min %> &deg;C</p>
+          <p>Temp Max: <%= @temp_max %> &deg;C</p>
+        </div>
+        
+        <!-- Time Information -->
+        <div class="weather-group">
+          <h3>Time</h3>
+          <p>Sunrise: <%= @sunrise_time.strftime('%H:%M:%S') %></p>
+          <p>Sunset: <%= @sunset_time.strftime('%H:%M:%S') %></p>
+        </div>
+        
+        <!-- Wind Information -->
+        <div class="weather-group">
+          <h3>Wind</h3>
+          <p>Wind Speed: <%= @wind_speed %> m/s</p>
+        </div>
+        
+        <!-- Miscellaneous Information -->
+        <div class="weather-group">
+          <h3>Miscellaneous</h3>
+          <p>Description: <%= @description %></p>
+          <p>Humidity: <%= @humidity %> %</p>
+          <p>Pressure: <%= @pressure %> hPa</p>
+          <p>Visibility: <%= @visibility %> meters</p>
+          <p>Clouds: <%= @clouds %> %</p>
+        </div>
+      </div>
+    <% elsif flash[:alert] %>
+      <p class="alert"><%= flash[:alert] %></p>
+    <% end %>
+    
+    <!-- Logout Button -->
+    <%= link_to 'Log Out', signout_path, method: :delete, class: 'btn' %>
+  </div>
+</body>
+</html>

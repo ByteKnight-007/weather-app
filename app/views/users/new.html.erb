@@ -1,33 +1,140 @@
-<h2>Sign up</h2>
-<%= form_with(model: @user, url: signup_path, local: true) do |form| %>
-  <% if @user.errors.any? %>
-    <div class="alert alert-danger">
-      <ul>
-        <% @user.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
-  <div class="form-group">
-    <%= form.label :first_name %>
-    <%= form.text_field :first_name, class: 'form-control', required: true %>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign Up</title>
+  <style>
+    /* Background Styles */
+    body {
+      background-image: url('https://image.slidesdocs.com/responsive-images/background/grass-plants-nature-clouds-powerpoint-background_56899519a6__960_540.jpg');
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      background-position: center center;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    /* Form Styles */
+    .container {
+      background: rgba(255, 255, 255, 0.8);
+      border-radius: 10px;
+      padding: 20px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+      width: 300px;
+      text-align: center;
+    }
+
+    h2 {
+      color: #333;
+      margin-bottom: 20px;
+    }
+
+    .form-group {
+      margin-bottom: 15px;
+      position: relative;
+    }
+
+    label {
+      display: block;
+      color: #555;
+      font-weight: bold;
+      text-align: left;
+      margin-bottom: 5px;
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 16px;
+      margin-left: -4%;
+      transition: border-color 0.3s ease, transform 0.3s ease;
+    }
+
+    .form-control:focus {
+      border-color: #007bff;
+      transform: scale(1.02);
+    }
+
+    .btn-primary {
+      background-color: #007bff;
+      color: #fff;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+
+    .btn-primary:hover {
+      background-color: #0056b3;
+      transform: scale(1.05);
+    }
+
+    .alert-danger {
+      background-color: #f8d7da;
+      border: 1px solid #f5c6cb;
+      color: #721c24;
+      padding: 10px;
+      margin-bottom: 20px;
+      border-radius: 5px;
+    }
+
+    ul {
+      list-style-type: none;
+      padding: 0;
+    }
+
+    li {
+      color: #721c24;
+      margin-left: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>New User? Start Here!</h2>
+    <%= form_with(model: @user, url: signup_path, local: true) do |form| %>
+      <% if @user.errors.any? %>
+        <div class="alert alert-danger">
+          <ul>
+            <% @user.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+      <div class="form-group">
+        <%= form.label :first_name %>
+        <%= form.text_field :first_name, class: 'form-control', required: true %>
+      </div>
+      <div class="form-group">
+        <%= form.label :last_name %>
+        <%= form.text_field :last_name, class: 'form-control', required: true %>
+      </div>
+      <div class="form-group">
+        <%= form.label :email %>
+        <%= form.email_field :email, class: 'form-control', required: true %>
+      </div>
+      <div class="form-group">
+        <%= form.label :password %>
+        <%= form.password_field :password, class: 'form-control', required: true %>
+      </div>
+      <div class="form-group">
+        <%= form.label :password_confirmation %>
+        <%= form.password_field :password_confirmation, class: 'form-control', required: true %>
+      </div>
+      <%= form.submit 'Sign up', class: 'btn btn-primary' %>
+    <% end %>
   </div>
-  <div class="form-group">
-    <%= form.label :last_name %>
-    <%= form.text_field :last_name, class: 'form-control', required: true %>
-  </div>
-  <div class="form-group">
-    <%= form.label :email %>
-    <%= form.email_field :email, class: 'form-control', required: true %>
-  </div>
-  <div class="form-group">
-    <%= form.label :password %>
-    <%= form.password_field :password, class: 'form-control', required: true %>
-  </div>
-  <div class="form-group">
-    <%= form.label :password_confirmation %>
-    <%= form.password_field :password_confirmation, class: 'form-control', required: true %>
-  </div>
-  <%= form.submit 'Sign up', class: 'btn btn-primary' %>
-<% end %>
+</body>
+</html>

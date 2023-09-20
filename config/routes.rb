@@ -1,13 +1,16 @@
 Rails.application.routes.draw do
-  get 'weather/index'
-  post 'weather/index', to: 'weather#index'
-  
+  get 'weather', to: 'weather#show'
+  post 'weather', to: 'weather#show'
+
   get 'static_pages/home'
+
   get '/signup', to: 'users#new'
   post '/signup', to: 'users#create'
+
   get '/signin', to: 'sessions#new'
   post '/signin', to: 'sessions#create'
-  delete '/signout', to: 'sessions#destroy'
+  
+  get '/signout', to: 'sessions#destroy'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")
