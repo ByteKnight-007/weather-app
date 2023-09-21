@@ -23,6 +23,7 @@ class WeatherController < ApplicationController
         sunset_timestamp = Time.at(@weather_data['sys']['sunset'])
         @sunrise_time = sunrise_timestamp.strftime('%I:%M %p')
         @sunset_time = sunset_timestamp.strftime('%I:%M %p')
+        @time_zone = get_timezone(@weather_data['timezone'])
 
         @weather_icon = @weather_data['weather'][0]['icon']
         @clouds = @weather_data['clouds']['all']
@@ -30,6 +31,15 @@ class WeatherController < ApplicationController
         flash.now[:alert] = 'City not found. Please enter a valid city name.'
       end
     end
+  end
+
+  def get_timezone(time_zone)
+    hours_offset = time_zone.abs / 3600
+    minutes_offset = (time_zone.abs % 3600) / 60
+
+    timezone_direction = time_zone >= 0 ? '+' : '-'
+
+    "UTC#{timezone_direction}#{hours_offset}hr:#{minutes_offset}min"
   end
 end
 
